@@ -7,8 +7,6 @@ import lombok.Setter;
 
 @Data
 @Builder
-@Getter
-@Setter
 public class User {
     private String username;
     private String email;

@@ -5,7 +5,7 @@ public class Main {
 
        Directory movieDirectory = new Directory("Movie");
 
-        FileSystem border = new File("Border");
+        File border = new File("Border");
         movieDirectory.add(border);
 
        Directory comedyMovieDirectory = new Directory("ComedyMovie");

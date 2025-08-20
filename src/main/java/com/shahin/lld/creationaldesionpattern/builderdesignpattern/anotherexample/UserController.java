@@ -18,7 +18,6 @@ public class UserController {
         return User.builder()
                 .username("john_doe")
                 .email("john@example.com")
-                .password("secure123")
                 .build();
     }
 }
