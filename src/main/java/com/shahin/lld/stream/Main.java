@@ -51,7 +51,12 @@ public class Main {
 
         Employee emp = employees.stream().sorted(Comparator.comparing(Employee::getSalary).reversed()).skip(2).findFirst().get();
 
-        System.out.println(emp);
+
+//        System.out.println(emp);
+
+        List<Employee> employees1  = employees.stream().filter(employee -> employee.getAge()>36).toList();
+
+        System.out.println(employees1);
 
 
     }

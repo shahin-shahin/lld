@@ -20,5 +20,7 @@ public class DocumentCharacter implements ILetter{
 
         //display the character of particular font and size
         //at given location
+
+        System.out.println("Row = "+row +" column = "+ column);
     }
 }
