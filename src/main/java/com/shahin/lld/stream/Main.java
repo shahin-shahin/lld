@@ -1,5 +1,6 @@
 package com.shahin.lld.stream;
 
+import java.awt.print.Pageable;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -17,16 +18,47 @@ public class Main {
                 new Employee(3, "Charlie", 30, "HR", "San Francisco", 50000.0, "Male"),
                 new Employee(4, "Diana", 40, "IT", "Los Angeles", 90000.0, "Female"),
                 new Employee(5, "Ethan", 25, "Marketing", "Seattle", 45000.0, "Male"),
-                new Employee(6, "Fiona", 32, "Finance", "Boston", 80000.0, "Female"),
+                new Employee(6, "Fiona", 30, "Finance", "Boston", 80000.0, "Female"),
                 new Employee(7, "George", 29, "IT", "Austin", 65000.0, "Male"),
-                new Employee(8, "Hannah", 38, "HR", "Denver", 70000.0, "Female")
+                new Employee(8, "Hannah", 31, "HR", "Boston", 70000.0, "Female")
         );
 
 
-//        Map<String, Long> dep = employees.stream()
-//                        .collect(Collectors.groupingBy(Employee::getDepartNames , Collectors.counting()));
-//
-//        System.out.println(dep);
+        Map<String, Optional<Employee>> highestSalForEachDedpt = employees.stream()
+                .collect(Collectors.groupingBy(Employee::getDepartNames, Collectors.minBy(Comparator.comparing(Employee::getSalary))));
+
+
+        Map<String, String> highestSalForEachDept = employees.stream()
+                .collect(Collectors.groupingBy(
+                        Employee::getDepartNames,
+                        Collectors.collectingAndThen(
+                                Collectors.maxBy(Comparator.comparing(Employee::getSalary)),
+                                empOpt -> empOpt.map(Employee::getName).orElse(null)
+                        )
+                ));
+
+        Map<String, String> secondHighestSalForEachDept = employees.stream()
+                .collect(Collectors.groupingBy(
+                        Employee::getDepartNames,
+                        Collectors.collectingAndThen(
+                                Collectors.collectingAndThen(
+                                        Collectors.toList(),
+                                        list -> list.stream()
+                                                .sorted(Comparator.comparing(Employee::getSalary).reversed())
+                                                .skip(1)  // skip the highest
+                                                .findFirst()
+                                                .map(Employee::getName)
+                                                .orElse(null)
+                                ),
+                                name -> name
+                        )
+                ));
+
+        Employee emp = employees.stream().sorted(Comparator.comparing(Employee::getSalary).reversed()).skip(1).findFirst().get();
+
+
+
+        System.out.println(emp);
 
 //        Map<String, Double> stringDoubleMap = employees.stream()
 //                .collect(Collectors.groupingBy(Employee::getGender, Collectors.averagingInt(Employee::getAge)));
@@ -49,14 +81,14 @@ public class Main {
 //
 //        System.out.println(emps);
 
-        Employee emp = employees.stream().sorted(Comparator.comparing(Employee::getSalary).reversed()).skip(2).findFirst().get();
-
-
-//        System.out.println(emp);
-
-        List<Employee> employees1  = employees.stream().filter(employee -> employee.getAge()>36).toList();
-
-        System.out.println(employees1);
+//        Employee emp = employees.stream().sorted(Comparator.comparing(Employee::getSalary).reversed()).skip(2).findFirst().get();
+//
+//
+////        System.out.println(emp);
+//
+//        List<Employee> employees1  = employees.stream().filter(employee -> employee.getAge()>36).toList();
+//
+//        System.out.println(employees1);
 
 
     }

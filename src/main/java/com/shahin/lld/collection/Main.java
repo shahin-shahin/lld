@@ -8,16 +8,15 @@ public class Main {
 
     public static void main(String[] args) {
 
-      Set<Integer> set = new TreeSet<>((Integer val1, Integer val2)->val2-val1);
+        Queue<Integer> list = new ArrayDeque<>();
 
-      set.add(4);
-      set.add(29);
-      set.add(5);
+       list.add(1);
+       list.add(8);
 
-      Iterator<Integer> integerIterator = set.iterator();
+       list.add(4);
 
+        System.out.println("Collections "+ list.remove(5));
 
-
-      set.forEach((System.out::println));
+        list.forEach(System.out::println);
     }
 }
