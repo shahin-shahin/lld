@@ -1,6 +1,7 @@
 package com.shahin.lld.stream;
 
 import java.awt.print.Pageable;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -58,7 +59,13 @@ public class Main {
 
 
 
-        System.out.println(emp);
+        List<Integer> numbers = Arrays.asList(10, 20, 50, 40, 30);
+        int nthLargest = numbers.stream()
+                .sorted(Comparator.reverseOrder())
+                .skip(2)
+                .findFirst()
+                .orElseThrow();
+        System.out.println(nthLargest);
 
 //        Map<String, Double> stringDoubleMap = employees.stream()
 //                .collect(Collectors.groupingBy(Employee::getGender, Collectors.averagingInt(Employee::getAge)));

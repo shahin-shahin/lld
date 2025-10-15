@@ -6,12 +6,12 @@ public class Client {
     public static void main(String[] args) {
 
 
-        Light livingRoomLight = new Light(); //executor
+        Light livingRoomLight = new Light(); //executor or receiver
 
         Command lightOn = new LightOnCommand(livingRoomLight);
         Command lightOff = new LightOffCommand(livingRoomLight);
 
-        RemoteControl remote = new RemoteControl(); //controller
+        RemoteControl remote = new RemoteControl(); //controller or Invoker
 
         remote.setCommand(lightOn);
         remote.pressButton();  // Output: Light is ON
