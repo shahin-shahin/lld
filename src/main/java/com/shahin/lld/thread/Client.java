@@ -1,45 +1,40 @@
 package com.shahin.lld.thread;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.*;
 
 public class Client {
 
-    public static int get(int[] a, int target) {
-        int start = 0;
-        int end = a.length - 1;
+    public static void main(String[] args) {
 
-        while (start <= end) {
-            int mid = (start + end) / 2;
-
-            if (a[mid] == target) {
-                return mid;
-            } else if (a[mid] < target) {
-                start = mid + 1;
-            } else {
-                end = mid - 1;
-            }
-        }
-
-        return -1; // not found
-    }
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(
+                2,                    // corePoolSize: keep at least 2 threads
+                4,                    // maximumPoolSize: allow up to 4 threads
+                10, TimeUnit.SECONDS, // keepAliveTime: idle threads die after 10s
+                new ArrayBlockingQueue<>(10) // workQueue: tasks waiting in queue
+        );
 
 
-    public static void main(String[] args){
+      try{
+          CompletableFuture<String> result = CompletableFuture.supplyAsync(()->{
 
-    int[] a = {2,6,7,87};
+              System.out.println("Current Thread"+ Thread.currentThread().getName());
 
-    int b = get(a, 87);
+              return "Concept and";
+          },executor).thenApplyAsync((String val)->{
+              System.out.println("thenApply thread :"+ Thread.currentThread().getName());
 
-    if (b==-1){
-        System.out.println("not found");
-    }else {
-        System.out.println("found "+ a[b]);
-    }
+              return val +"coding";
+          },executor);
 
-        List<Integer> list = new ArrayList<>();
 
+          System.out.println(" status :"+ result.get());
+      }catch (Exception e){
+
+      }
 
     }
 

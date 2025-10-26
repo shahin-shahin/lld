@@ -2,7 +2,7 @@ package com.shahin.lld.structuraldesignpattern.proxydesignpattern;
 
 public class VideoServiceProxy implements VideoService {
     private RealVideoService realVideoService;
-    private String userRole;
+    private final String userRole;
 
     public VideoServiceProxy(String userRole) {
         this.userRole = userRole;
