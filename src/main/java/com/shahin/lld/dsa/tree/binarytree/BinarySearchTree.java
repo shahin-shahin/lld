@@ -1,5 +1,7 @@
 package com.shahin.lld.dsa.tree.binarytree;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 public class BinarySearchTree {
@@ -124,6 +126,26 @@ public class BinarySearchTree {
         }
     }
 
+    //preorder iterative approach
+    public void preorderIterative() {
+        Stack<Node> stack = new Stack<>();
+        stack.push(root);
+
+        while (!stack.isEmpty()) {
+            Node node = stack.pop();
+            System.out.print(node.value + " ");
+
+            if (node.right != null) {
+                stack.push(node.right);
+            }
+            if (node.left != null) {
+                stack.push(node.left);
+            }
+
+        }
+    }
+
+
     public void postorder() {
         postorderRec(root);
         System.out.println();
@@ -136,5 +158,29 @@ public class BinarySearchTree {
             System.out.print(root.value + " ");
         }
     }
+
+    //postorder iterative approach
+    public void postorderIterative() {
+        Stack<Node> stack = new Stack<>();
+        Node current = root, lastVisited = null;
+
+        while (current != null || !stack.isEmpty()) {
+            if (current != null) {
+                stack.push(current);
+                current = current.left; // go left
+            } else {
+                Node peekNode = stack.peek();
+                if (peekNode.right != null && lastVisited != peekNode.right) {
+                    // if right child exists and not visited, go right
+                    current = peekNode.right;
+                } else {
+                    // visit node
+                    System.out.print(peekNode.value+" ");
+                    lastVisited = stack.pop();
+                }
+            }
+        }
+    }
+
 
 }

@@ -23,24 +23,27 @@ public class Main {
 //        tree.insert(60);
 //        tree.insert(80);
 
-        System.out.println("Inorder traversal:");
-        tree.inorder();
-        tree.inorderIterative();
+//        System.out.println("Inorder traversal:");
+//        tree.inorder();
+//        tree.inorderIterative();
 
-        System.out.println("Preorder traversal:");
-        tree.preorder();
+//        System.out.println("Preorder traversal:");
+//        tree.preorder();
+//        tree.preorderIterative();
 
-        System.out.println("Postorder traversal:");
+//        System.out.println("Postorder traversal:");
         tree.postorder();
+        tree.postorderIterative();
+
 
         // Search
-        System.out.println("Search 40: " + tree.search(20));
-        System.out.println("Search 90: " + tree.search(90));
+//        System.out.println("Search 40: " + tree.search(20));
+//        System.out.println("Search 90: " + tree.search(90));
 
         // Delete
-        System.out.println("Deleting 20...");
-        tree.delete(30);
-        System.out.println("Inorder after deleting 20:");
+//        System.out.println("Deleting 20...");
+//        tree.delete(30);
+//        System.out.println("Inorder after deleting 20:");
 //        tree.inorder();
     }
 }
