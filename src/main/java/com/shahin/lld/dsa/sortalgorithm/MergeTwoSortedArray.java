@@ -1,5 +1,7 @@
 package com.shahin.lld.dsa.sortalgorithm;
 
+import java.util.Arrays;
+
 public class MergeTwoSortedArray {
 
     public static void merge(int[] nums1, int m, int[] nums2, int n) {
@@ -37,6 +39,19 @@ public class MergeTwoSortedArray {
         int[] nums2 = {2, 5, 6};
         merge(nums1, 3, nums2, 3);
         System.out.println(java.util.Arrays.toString(nums1));
+
+        // Example 2
+        int[] nums1b = {1};
+        int[] nums2b = {};
+        merge(nums1b, 1, nums2b, 0);
+        System.out.println(Arrays.toString(nums1b));
+        // Output: [1]
+
+        // Example 3
+        int[] nums1c = {0};
+        int[] nums2c = {1};
+        merge(nums1c, 0, nums2c, 1);
+        System.out.println(Arrays.toString(nums1c));
 
     }
 }
