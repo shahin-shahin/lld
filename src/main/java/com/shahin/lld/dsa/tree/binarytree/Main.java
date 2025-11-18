@@ -31,7 +31,7 @@ public class Main {
 //        tree.preorder();
 //        tree.preorderIterative();
 
-//        System.out.println("Postorder traversal:");
+        System.out.println("Postorder traversal:");
         tree.postorder();
         tree.postorderIterative();
 
@@ -42,7 +42,7 @@ public class Main {
 
         // Delete
 //        System.out.println("Deleting 20...");
-//        tree.delete(30);
+//        tree.delete(70);
 //        System.out.println("Inorder after deleting 20:");
 //        tree.inorder();
     }

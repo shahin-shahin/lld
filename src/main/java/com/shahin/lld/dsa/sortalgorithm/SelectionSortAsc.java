@@ -1,4 +1,4 @@
-package com.shahin.lld.dsa;
+package com.shahin.lld.dsa.sortalgorithm;
 
 public class SelectionSortAsc {
 

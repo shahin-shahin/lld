@@ -25,78 +25,13 @@ public class Main {
         );
 
 
-        Map<String, Optional<Employee>> highestSalForEachDedpt = employees.stream()
-                .collect(Collectors.groupingBy(Employee::getDepartNames, Collectors.minBy(Comparator.comparing(Employee::getSalary))));
+        employees.sort((a, b)->Integer.compare(a.getAge(),b.getAge()));
 
+        employees.forEach(System.out::println);
 
-        Map<String, String> highestSalForEachDept = employees.stream()
-                .collect(Collectors.groupingBy(
-                        Employee::getDepartNames,
-                        Collectors.collectingAndThen(
-                                Collectors.maxBy(Comparator.comparing(Employee::getSalary)),
-                                empOpt -> empOpt.map(Employee::getName).orElse(null)
-                        )
-                ));
-
-        Map<String, String> secondHighestSalForEachDept = employees.stream()
-                .collect(Collectors.groupingBy(
-                        Employee::getDepartNames,
-                        Collectors.collectingAndThen(
-                                Collectors.collectingAndThen(
-                                        Collectors.toList(),
-                                        list -> list.stream()
-                                                .sorted(Comparator.comparing(Employee::getSalary).reversed())
-                                                .skip(1)  // skip the highest
-                                                .findFirst()
-                                                .map(Employee::getName)
-                                                .orElse(null)
-                                ),
-                                name -> name
-                        )
-                ));
-
-        Employee emp = employees.stream().sorted(Comparator.comparing(Employee::getSalary).reversed()).skip(1).findFirst().get();
-
-
-
-        List<Integer> numbers = Arrays.asList(10, 20, 50, 40, 30);
-        int nthLargest = numbers.stream()
-                .sorted(Comparator.reverseOrder())
-                .skip(2)
-                .findFirst()
-                .orElseThrow();
-        System.out.println(nthLargest);
-
-//        Map<String, Double> stringDoubleMap = employees.stream()
-//                .collect(Collectors.groupingBy(Employee::getGender, Collectors.averagingInt(Employee::getAge)));
-//
-//        System.out.println(stringDoubleMap);
-//
-//        Map.Entry<String, Long> deptMaxCount = employees.stream().collect(Collectors.groupingBy(
-//                        Employee::getDepartNames, Collectors.counting()))
-//                .entrySet().stream().max(Map.Entry.comparingByValue()).get();
-//
-//        System.out.println(deptMaxCount);
-//
-//        Map<String, Optional<Employee>> highestSalForEachDedpt = employees.stream()
-//                .collect(Collectors.groupingBy(Employee::getDepartNames, Collectors.minBy(Comparator.comparing(Employee::getSalary))));
-//
-//        System.out.println(highestSalForEachDedpt);
-
-
-//        List<Employee> emps = employees.stream().sorted(Comparator.comparing(Employee::getSalary)).collect(Collectors.toList());
-//
-//        System.out.println(emps);
-
-//        Employee emp = employees.stream().sorted(Comparator.comparing(Employee::getSalary).reversed()).skip(2).findFirst().get();
-//
-//
-////        System.out.println(emp);
-//
-//        List<Employee> employees1  = employees.stream().filter(employee -> employee.getAge()>36).toList();
-//
-//        System.out.println(employees1);
 
 
     }
+
+
 }
